@@ -127,8 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="func_defination.cpp" />
+    <ClCompile Include="evaluate_func.cpp" />
+    <ClCompile Include="stimulated_trading_func.cpp" />
+    <ClCompile Include="financial_indicators_func.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="strategy_func.cpp" />
+    <ClCompile Include="support_func.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="func_declare.hpp" />

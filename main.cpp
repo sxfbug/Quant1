@@ -3,6 +3,7 @@
 #include <sstream>  // 字符串处理工具，比如 stringstream (用来切分字符串)
 #include <vector>   // 容器工具，比如 vector (用来存很多条数据)
 #include <string>   // 字符串工具
+#include<unordered_map> //哈希表
 #include"func_declare.hpp"//函数声明
 
 

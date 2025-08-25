@@ -1,6 +1,7 @@
 #ifndef FUNCTION
 #define FUNCTION
 #include<vector>
+#include <string>
 
 //粒度为日的历史数据
 struct DailyInfo
@@ -58,25 +59,27 @@ struct Account
 };
 
 
-
+//support function
 
 //提取csv到vector
 std::vector<DailyInfo>load_data_from_csv(const std::string& filename);
 std::vector<US_Treasury_Yields>load_yields_from_csv(const std::string& filename);
 double sup_stod(std::string x);
 
-//计算
+//financial indicators function
 std::vector<double>get_sum_close(const std::vector<DailyInfo>& data);
 std::vector<double>get_MA(const std::vector<double>& close, int y);
+
+//strategy function
 std::vector<TradeAct> Strategy1(const std::vector<double>& shortMA, const std::vector<double>& longMA,
 	const std::vector<DailyInfo> data);
 
 
-//模拟交易，也叫回测？
+//stimulated trading function
 std::vector<Account> simulated_trading(const std::vector<TradeAct>& act,
 	const std::vector<DailyInfo>& data, double base, double handling_Fees = 0.0);
 
-//评估指标
+//evaluate function
 double total_return(const std::vector<Account>& sum, double base);
 double annualized_rate_of_return(const std::vector<Account>& sum, double base);
 double max_drawdown(const std::vector<Account>& sum);
