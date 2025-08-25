@@ -10,11 +10,15 @@
 int main() {
 	std::string filename = "Data/AAPLcsv_version.csv";
 	std::vector<DailyInfo> data;
-	data = load_from_csv(filename);
+	data = load_data_from_csv(filename);
+	
+	std::string yieldsname = "Data/us_treasury_yields_daily_csv.csv";
+	std::vector<US_Treasury_Yields> yields;
+	yields = load_yields_from_csv(yieldsname);
 
 	std::vector<double> close;
 	close = get_sum_close(data);
-	std::cout << close.size() << std::endl;
+	std::cout << "close.size"<<close.size() << std::endl;
 	std::vector<double>MA5;
 	
 	std::vector<double>MA20;
@@ -26,15 +30,9 @@ int main() {
 	std::vector<TradeAct> act;
 	act=Strategy1(MA5, MA20, data);
 	
-	int idx = 1;
-	std::cout << "size of act"<<act.size()<<std::endl;
-	/*for (int i = 0; i < 50; i++) {
-		std::cout << idx << "\t\t";
-		std::cout << act[i].date << "\t";
-		std::cout << act[i].action << "\t";
-		std::cout << act[i].close << std::endl;
-		idx++;
-	}*/
+	
+	std::cout << "act.size"<<act.size()<<std::endl;
+	
 
 	std::cout << "\n\n\n";
 	std::vector<Account> sum;
@@ -44,16 +42,25 @@ int main() {
 
 	std::cout << "size of sum:"<<sum.size()<<"\n";
 	
-	/*for (int i = 0; i < sum.size(); i++) {
-		std::cout << "Date:"<<sum[i].date << "\t\t";
-		std::cout << "Cash:"<<sum[i].cash << "\t";
-		std::cout << "Shares:"<<sum[i].shares << "\t";
-		std::cout << "total value:"<<sum[i].total_value << std::endl;
-	}*/
-	double rate=annualized_rate_of_return(sum, base);
-	std::cout << "annual rate:" << rate;
-	
 
+	double ret = total_return(sum, base);
+	std::cout << "total return:" << ret << "\n";
+
+	double rate=annualized_rate_of_return(sum, base);
+	std::cout << "annual rate:" << rate<<"\n";
+	
+	double md = max_drawdown(sum);
+	std::cout << "max drawdown:" << md << "\n";
+
+	std::vector<double> daily_return= daily_rate_of_return(sum);
+	std::cout << "nums of daily return:" << daily_return.size()<<"\n";
+	double st = standard_deviation(daily_return);
+	int days = 252;
+	double an_vo = annualized_volatility(st, days);
+	
+	double norisk = 13.21 / 100;
+	double sharpe = sharpe_rate(rate, norisk, an_vo);
+	std::cout << "sharpe rate:" << sharpe << "\n";
 
 
 }

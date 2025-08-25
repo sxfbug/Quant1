@@ -8,15 +8,24 @@
 #include"func_declare.hpp"
 
 
+//辅助函数：读取国债时遇到空字符串，手动置为0
+double sup_stod(std::string x) {
+	if (x == "") {
+		return 0.0;
+	}
+	else {
+		return std::stod(x);
+	}
+}
 
-//
-std::vector<DailyInfo>load_from_csv(const std::string& filename) {
+//从csv中获取数据
+std::vector<DailyInfo>load_data_from_csv(const std::string& filename) {
 	std::vector<DailyInfo> dataset;
 
 	std::ifstream file(filename);
 
 	if (!file.is_open()) {
-		std::cout << "错误：无法打开文件！路径可能不正确：" << filename << std::endl;
+		std::cout << "错误：无法打开数据csv文件！路径可能不正确：" << filename << std::endl;
 		return dataset; // 返回空vector
 	}
 	//读取第一行并丢弃
@@ -60,6 +69,72 @@ std::vector<DailyInfo>load_from_csv(const std::string& filename) {
 	}
 
 
+//从csv中获取美国国债
+std::vector<US_Treasury_Yields>load_yields_from_csv(const std::string& filename) {
+	std::vector<US_Treasury_Yields> dataset;
+
+	std::ifstream file(filename);
+	if (!file.is_open()) {
+		std::cout << "错误：无法打开国债收益率csv文件！路径可能不正确：" << filename << std::endl;
+		return dataset; // 返回空vector
+	}
+
+	//读取第一行并丢弃
+	std::string line;//创建一个string类型的临时变量line
+	std::getline(file, line);//把第一行内容读取到line中
+
+	while (std::getline(file, line)) {
+		US_Treasury_Yields item;
+		
+		std::stringstream ss(line);
+		std::string token;
+
+		std::getline(ss, item.date, ','); //日期
+
+		std::getline(ss, token, ',');        // 第二刀：切下一个字符串，先放到临时 token 里
+		item.m1 = sup_stod(token);
+
+		std::getline(ss, token, ',');
+		item.m3 = sup_stod(token);
+
+		std::getline(ss, token, ',');
+		item.m6 = sup_stod(token);
+
+		std::getline(ss, token, ',');
+		item.y1 = sup_stod(token);
+
+		std::getline(ss, token, ',');
+		item.y2 = sup_stod(token);
+
+		std::getline(ss, token, ',');
+		item.y3 = sup_stod(token);
+
+		std::getline(ss, token, ',');
+		item.y5 = sup_stod(token);
+
+		std::getline(ss, token, ',');
+		item.y7 = sup_stod(token);
+
+		std::getline(ss, token, ',');
+		item.y10 = sup_stod(token);
+
+		std::getline(ss, token, ',');
+		item.y20 = sup_stod(token);
+
+		std::getline(ss, token, ',');
+		item.y30 = sup_stod(token);
+
+		dataset.push_back(item);
+	}
+
+
+	file.close();
+	return dataset;
+}
+
+
+
+
 
 //计算所有的收盘价
 //参数：数据集
@@ -97,9 +172,7 @@ std::vector<double>get_MA(const std::vector<double>& close, int y) {
 	for (int i = y+1; i < close.size(); i++) {
 		sum = sum - close[i - y] + close[i];
 		MA.push_back(sum/y);
-		if (i == 10407) {
-			std::cout << i << std::endl;
-		}
+		
 	}
 	return MA;
 }
@@ -205,7 +278,7 @@ std::vector<Account> simulated_trading(const std::vector<TradeAct>& act,
 //总收益率
 double total_return(const std::vector<Account>&sum,double base) {
 	double ratio = (sum[sum.size() - 1].total_value - base) / base;
-	std::cout << std::fixed << std::setprecision(5) << ratio << "%" << std::endl;
+	//std::cout << std::fixed << std::setprecision(5) << ratio << "%" << std::endl;
 	return ratio;
 }
 
@@ -247,3 +320,49 @@ double max_drawdown(const std::vector<Account> &sum) {
 
 
 
+//日收益率	
+//参数：账户 vector
+//输出：日收益率vector
+std::vector<double> daily_rate_of_return(const std::vector<Account>& sum) {
+	std::vector<double> rate;
+	//计算后续的收益率
+	for (int i=1;i<sum.size();i++)
+	{
+		rate.push_back((sum[i].total_value - sum[i - 1].total_value) / sum[i - 1].total_value);
+	}
+	return rate;
+}
+
+//收益率的标准差
+//参数：日收益率vector
+//输出：收益率标准差vector
+//标准差σ = √[Σ(r? - μ)? / (n-1)]
+double standard_deviation(const std::vector<double>& daily) {
+	int num = daily.size();
+	double ave = 0.0;
+	for (const auto &i : daily) {
+		ave += i;
+	}
+	ave /= num;
+	double squared_sum = 0.0;
+	for (const auto& i : daily) {
+		squared_sum += std::pow(i - ave, 2);
+	}
+	squared_sum = std::sqrt(squared_sum / (num - 1));
+	return squared_sum;
+}
+
+
+//年化波动率
+// 参数：double标准差，int交易日期数
+// 返回：double
+double annualized_volatility(double& st, int& days) {
+	return st * std::sqrt(double(days));
+}
+
+
+//夏普比率
+double sharpe_rate(double& annualized_rate_of_return,
+	double& norisk, double& annualized_volatility) {
+	return (annualized_rate_of_return - norisk) / annualized_volatility;
+}
