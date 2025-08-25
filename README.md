@@ -6,6 +6,9 @@ func_declare 函数声明文件
 func_defination 函数定义文件  
 main 函数入口  
 
+更新日志  
+25/8/2025  
+添加夏普比率计算
 24/8/2025  
 已实现的功能：  
 1.逐行读取csv文件并获取date,open,close,high,low等信息。之后可以用模版类进行优化，实现用户自定义内容读取  
