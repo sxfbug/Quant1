@@ -1,9 +1,13 @@
 # Quant1
 我的思路笔记：https://olivine-rainbow-fd2.notion.site/C-MA-2587c8e38f9180e0be2ddf3658947f67?source=copy_link  
 
-文件说明：  
+文件结构：  
 func_declare 函数声明文件  
-func_defination 函数定义文件  
+support 辅助函数  
+financial indicators 金融指标，如MA  
+strategy 量化策略  
+stimulated trading 模拟交易，回测  
+evaluate 评估  
 main 函数入口  
 
   
@@ -12,6 +16,7 @@ main 函数入口
   
 25/8/2025  
 添加夏普比率计算  
+优化cpp文件结构
 
   
 24/8/2025  
