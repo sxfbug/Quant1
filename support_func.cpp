@@ -143,3 +143,32 @@ std::vector<double>get_sum_close(const std::vector<DailyInfo>& data) {
 	return sum;
 }
 
+//选择无风险利率（夏普比率），选择数据第一天的10年期美国国债利率
+//参数：第一天的日期字符串，国债利率vector
+//返回：double类的利率，如果返回-1则为没找到对应日期的利率
+double choose_norisk_rate(std::string finddate, std::vector<US_Treasury_Yields>& yields) {
+	for (const auto& i : yields) {
+		if (i.date == finddate) {
+			return i.y10;
+		}
+	}
+}
+
+//输出账户为csv
+//输入：账户vector，交易行为vector，两个MA的参数
+//输出：无，但是会创建一个csv
+void output_account_csv(std::vector<Account>& sum,std::vector<TradeAct>& act,
+    int short_days,int long_days) {
+    std::string filename = "Data/Analysis/backtest_result_" + std::to_string(short_days) + "and" + std::to_string(long_days)+".csv";
+	std::ofstream output(filename);
+	output << "date,total_value,action,price\n";
+    for (size_t i = 0; i < sum.size(); ++i) {
+        output << sum[i].date << ","
+            << sum[i].total_value << ","
+            << (i < act.size() ? static_cast<int>(act[i].action) : -1) << ","
+            << (i < act.size() ? act[i].close : 0) << "\n";
+    }
+    output.close();
+
+
+}

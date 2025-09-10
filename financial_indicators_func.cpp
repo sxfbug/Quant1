@@ -10,17 +10,18 @@
 //计算对应的MA
 //参数：收盘价vector，MA的y（过去y日）
 //输出：double的vector
-std::vector<double>get_MA(const std::vector<double>& close, int y) {
+std::vector<double>get_MA(const std::vector<DailyInfo>& close, int y) {
 	std::vector<double> MA;
 	double sum = 0.0;
 	/*if (close.size() < y) {
 		std::cout << "too few arguments in close vector";
 		return MA;
 	}*/
+
 	//滑动窗口：先计算前面y个元素
 	int temp;
 	for (int i = 0; i < y && i < close.size(); i++) {
-		sum += close[i];
+		sum += close[i].close;
 		MA.push_back(0.0);
 		temp = i;
 	}
@@ -30,7 +31,7 @@ std::vector<double>get_MA(const std::vector<double>& close, int y) {
 
 	//从第y+2个元素开始
 	for (int i = y + 1; i < close.size(); i++) {
-		sum = sum - close[i - y] + close[i];
+		sum = sum - close[i - y].close + close[i].close;
 		MA.push_back(sum / y);
 
 	}

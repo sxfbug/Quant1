@@ -66,20 +66,25 @@ std::vector<DailyInfo>load_data_from_csv(const std::string& filename);
 std::vector<US_Treasury_Yields>load_yields_from_csv(const std::string& filename);
 double sup_stod(std::string x);
 
+//outoput csv
+void output_account_csv(std::vector<Account>& sum, std::vector<TradeAct>& act,
+    int short_days, int long_days);
 //financial indicators function
 std::vector<double>get_sum_close(const std::vector<DailyInfo>& data);
-std::vector<double>get_MA(const std::vector<double>& close, int y);
-
+std::vector<double>get_MA(const std::vector<DailyInfo>& close, int y);
 //strategy function
-std::vector<TradeAct> Strategy1(const std::vector<double>& shortMA, const std::vector<double>& longMA,
-	const std::vector<DailyInfo> data);
+std::vector<TradeAct> Dual_MA_Strategy(int& short_days, int& long_days,
+	const std::vector<DailyInfo>& data);
 
 
 //stimulated trading function
-std::vector<Account> simulated_trading(const std::vector<TradeAct>& act,
+std::vector<Account> full_position(const std::vector<TradeAct>& act,
 	const std::vector<DailyInfo>& data, double base, double handling_Fees = 0.0);
 
 //evaluate function
+void evaluate_func(const std::vector<Account>& sum, double base,
+	int days, double norisk);
+
 double total_return(const std::vector<Account>& sum, double base);
 double annualized_rate_of_return(const std::vector<Account>& sum, double base);
 double max_drawdown(const std::vector<Account>& sum);
@@ -90,4 +95,9 @@ double sharpe_rate(double& annualized_rate_of_return,
 	double& norisk, double& annualized_volatility);
 
 
+
+//comprehensive strategy function
+int Dual_MA_Strategy_full(const std::vector<DailyInfo>& data, int short_days,
+	int long_days, double base, double handling_Fees, int days, double norisk
+);
 #endif // !FUNCTION

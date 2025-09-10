@@ -13,15 +13,10 @@
 
 
 
-
-
-
-
-
-//模拟交易
+//模拟交易，全仓
 //参数：交易行为vector，数据集，初始资产，手续费
 //返回：账户的vector
-std::vector<Account> simulated_trading(const std::vector<TradeAct>& act, 
+std::vector<Account> full_position(const std::vector<TradeAct>& act, 
 	const std::vector<DailyInfo>& data,double base,double handling_Fees) {
 	std::vector<Account> sum;
 	Account item;

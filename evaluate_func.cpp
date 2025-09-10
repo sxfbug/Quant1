@@ -9,6 +9,30 @@
 
 //评估绩效
 
+//总评估函数入口
+//包含内容：总收益率，年化收益率，最大回撤，日收益率，
+// 日收益率标准差，年化波动率，夏普比率
+//参数：账户vector，double类的初始资金，int类的年交易日数量，无风险利率
+void evaluate_func(const std::vector<Account>& sum, double base, 
+	  int days,double norisk) {
+	double ret = total_return(sum, base);
+	std::cout << "total return: " << ret << "\n";
+
+	double rate = annualized_rate_of_return(sum, base);
+	std::cout << "annual rate: " << rate << "\n";
+
+	double md = max_drawdown(sum);
+	std::cout << "max drawdown: " << md << "\n";
+
+	std::vector<double> daily_return = daily_rate_of_return(sum);
+	//std::cout << "nums of daily return:" << daily_return.size() << "\n";
+	double st = standard_deviation(daily_return);
+	double an_vo = annualized_volatility(st, days);
+
+	
+	double sharpe = sharpe_rate(rate, norisk, an_vo);
+	std::cout << "sharpe rate: " << sharpe << "\n";
+}
 //总收益率
 double total_return(const std::vector<Account>& sum, double base) {
 	double ratio = (sum[sum.size() - 1].total_value - base) / base;

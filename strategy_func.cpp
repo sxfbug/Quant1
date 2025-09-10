@@ -7,11 +7,17 @@
 #include<cmath> //计算金融指标
 #include"func_declare.hpp"
 
-//策略：金叉买入，死叉卖出
-//参数：shortMA,longMA，数据集?
+//策略：双均线策略，金叉买入，死叉卖出
+//参数：int类的短期MA天数，int类的长期MA天数，dailyinfo类的数据集data
 //返回：交易行为vector
-std::vector<TradeAct> Strategy1(const std::vector<double>& shortMA, const std::vector<double>& longMA,
-	const std::vector<DailyInfo> data) {
+std::vector<TradeAct> Dual_MA_Strategy(	int& short_days,int& long_days,
+	const std::vector<DailyInfo>& data) {
+	//计算短期和长期MA
+	std::vector<double>shortMA;
+	std::vector<double>longMA;
+
+	shortMA = get_MA(data, short_days);
+	longMA = get_MA(data, long_days);
 
 	//交易行为vector
 	std::vector<TradeAct> act;
