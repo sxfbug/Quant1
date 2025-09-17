@@ -1,14 +1,14 @@
-#include <iostream> // ÊäÈëÊä³ö¹¤¾ß£¬±ÈÈç cout (ÓÃÀ´´òÓ¡ÐÅÏ¢)
-#include <sstream>  // ×Ö·û´®´¦Àí¹¤¾ß£¬±ÈÈç stringstream (ÓÃÀ´ÇÐ·Ö×Ö·û´®)
-#include <vector>   // ÈÝÆ÷¹¤¾ß£¬±ÈÈç vector (ÓÃÀ´´æºÜ¶àÌõÊý¾Ý)
-#include <string>   // ×Ö·û´®¹¤¾ß
-#include<iomanip > //Çó°Ù·Ö±È
-#include<cmath> //¼ÆËã½ðÈÚÖ¸±ê
+#include <iostream> // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ cout (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¡ï¿½ï¿½Ï¢)
+#include <sstream>  // ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ stringstream (ï¿½ï¿½ï¿½ï¿½ï¿½Ð·ï¿½ï¿½Ö·ï¿½ï¿½ï¿½)
+#include <vector>   // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ vector (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+#include <string>   // ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#include <iomanip> //ï¿½ï¿½Ù·Ö±ï¿½
+#include <cmath> //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½
 #include"func_declare.hpp"
 
-//°üº¬²ßÂÔ¡¢»Ø²â¡¢ÆÀ¹ÀµÄ¸ß·â×°¶È²ßÂÔº¯Êý
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¡ï¿½ï¿½Ø²â¡¢ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ß·ï¿½×°ï¿½È²ï¿½ï¿½Ôºï¿½ï¿½ï¿½
 
-//Ë«¾ùÏß²ßÂÔ£¬È«²Ö½»Ò×
+//Ë«ï¿½ï¿½ï¿½ß²ï¿½ï¿½Ô£ï¿½È«ï¿½Ö½ï¿½ï¿½ï¿½
 int Dual_MA_Strategy_full(const std::vector<DailyInfo>& data,int short_days, 
 	int long_days, double base, double handling_Fees,int days,double norisk
 	) {

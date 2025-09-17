@@ -1,11 +1,11 @@
-#include <iostream> // ÊäÈëÊä³ö¹¤¾ß£¬±ÈÈç cout (ÓÃÀ´´òÓ¡ÐÅÏ¢)
-#include <fstream>  // ÎÄ¼þ²Ù×÷¹¤¾ß£¬±ÈÈç ifstream (ÓÃÀ´¶ÁÈ¡ÎÄ¼þ)
-#include <sstream>  // ×Ö·û´®´¦Àí¹¤¾ß£¬±ÈÈç stringstream (ÓÃÀ´ÇÐ·Ö×Ö·û´®)
-#include <vector>   // ÈÝÆ÷¹¤¾ß£¬±ÈÈç vector (ÓÃÀ´´æºÜ¶àÌõÊý¾Ý)
-#include <string>   // ×Ö·û´®¹¤¾ß
-#include<iomanip > //Çó°Ù·Ö±È
-#include<cmath> //¼ÆËã½ðÈÚÖ¸±ê
-#include"func_declare.hpp"
+#include <iostream> // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ cout (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¡ï¿½ï¿½Ï¢)
+#include <fstream>  // ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ ifstream (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½Ä¼ï¿½)
+#include <sstream>  // ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ stringstream (ï¿½ï¿½ï¿½ï¿½ï¿½Ð·ï¿½ï¿½Ö·ï¿½ï¿½ï¿½)
+#include <vector>   // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ vector (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+#include <string>   // ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#include <iomanip> //ï¿½ï¿½Ù·Ö±ï¿½
+#include <cmath> //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½
+#include "func_declare.hpp"
 
 
 
@@ -13,21 +13,21 @@
 
 
 
-//Ä£Äâ½»Ò×£¬È«²Ö
-//²ÎÊý£º½»Ò×ÐÐÎªvector£¬Êý¾Ý¼¯£¬³õÊ¼×Ê²ú£¬ÊÖÐø·Ñ
-//·µ»Ø£ºÕË»§µÄvector
+//Ä£ï¿½â½»ï¿½×£ï¿½È«ï¿½ï¿½
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªvectorï¿½ï¿½ï¿½ï¿½ï¿½Ý¼ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½Ê²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//ï¿½ï¿½ï¿½Ø£ï¿½ï¿½Ë»ï¿½ï¿½ï¿½vector
 std::vector<Account> full_position(const std::vector<TradeAct>& act, 
 	const std::vector<DailyInfo>& data,double base,double handling_Fees) {
 	std::vector<Account> sum;
 	Account item;
 	item.cash = base;
 
-	//±éÀú½»Ò×ÐÐÎª
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª
 	int test = 0;
 	for (int i = 0;i<act.size();i++) {
 		
 		if (act[i].date != data[i].date) {
-			std::cout << "ÈÕÆÚ²»Æ¥Åä"<<test<<"\n";
+			std::cout << "ï¿½ï¿½ï¿½Ú²ï¿½Æ¥ï¿½ï¿½"<<test<<"\n";
 			test++;
 		}
 		item.date = data[i].date;
@@ -38,7 +38,7 @@ std::vector<Account> full_position(const std::vector<TradeAct>& act,
 		else if(act[i].action == TradeAct::action::SELL){
 			item.cash = data[i].close * item.shares;
 			item.shares = 0.0;
-			//ÊÖÐø·Ñ
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			item.cash -= handling_Fees * item.cash;
 		}
 		

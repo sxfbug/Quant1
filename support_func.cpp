@@ -1,14 +1,14 @@
-#include <iostream> // ÊäÈëÊä³ö¹¤¾ß£¬±ÈÈç cout (ÓÃÀ´´òÓ¡ĞÅÏ¢)
-#include <fstream>  // ÎÄ¼ş²Ù×÷¹¤¾ß£¬±ÈÈç ifstream (ÓÃÀ´¶ÁÈ¡ÎÄ¼ş)
-#include <sstream>  // ×Ö·û´®´¦Àí¹¤¾ß£¬±ÈÈç stringstream (ÓÃÀ´ÇĞ·Ö×Ö·û´®)
-#include <vector>   // ÈİÆ÷¹¤¾ß£¬±ÈÈç vector (ÓÃÀ´´æºÜ¶àÌõÊı¾İ)
-#include <string>   // ×Ö·û´®¹¤¾ß
-#include<iomanip > //Çó°Ù·Ö±È
-#include<cmath> //¼ÆËã½ğÈÚÖ¸±ê
-#include"func_declare.hpp"
+#include <iostream> // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ cout (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¡ï¿½ï¿½Ï¢)
+#include <fstream>  // ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ ifstream (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½Ä¼ï¿½)
+#include <sstream>  // ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ stringstream (ï¿½ï¿½ï¿½ï¿½ï¿½Ğ·ï¿½ï¿½Ö·ï¿½ï¿½ï¿½)
+#include <vector>   // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ vector (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+#include <string>   // ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#include <iomanip> //ï¿½ï¿½Ù·Ö±ï¿½
+#include <cmath> //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½
+#include "func_declare.hpp"
 
 
-//¸¨Öúº¯Êı£º¶ÁÈ¡¹úÕ®Ê±Óöµ½¿Õ×Ö·û´®£¬ÊÖ¶¯ÖÃÎª0
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Õ®Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½Îª0
 double sup_stod(std::string x) {
 	if (x == "") {
 		return 0.0;
@@ -18,70 +18,70 @@ double sup_stod(std::string x) {
 	}
 }
 
-//´ÓcsvÖĞ»ñÈ¡Êı¾İ
+//ï¿½ï¿½csvï¿½Ğ»ï¿½È¡ï¿½ï¿½ï¿½ï¿½
 std::vector<DailyInfo>load_data_from_csv(const std::string& filename) {
 	std::vector<DailyInfo> dataset;
 
 	std::ifstream file(filename);
 
 	if (!file.is_open()) {
-		std::cout << "´íÎó£ºÎŞ·¨´ò¿ªÊı¾İcsvÎÄ¼ş£¡Â·¾¶¿ÉÄÜ²»ÕıÈ·£º" << filename << std::endl;
-		return dataset; // ·µ»Ø¿Õvector
+		std::cout << "ï¿½ï¿½ï¿½ï¿½ï¿½Ş·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½csvï¿½Ä¼ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½Ü²ï¿½ï¿½ï¿½È·ï¿½ï¿½" << filename << std::endl;
+		return dataset; // ï¿½ï¿½ï¿½Ø¿ï¿½vector
 	}
-	//¶ÁÈ¡µÚÒ»ĞĞ²¢¶ªÆú
-	std::string line;//´´½¨Ò»¸östringÀàĞÍµÄÁÙÊ±±äÁ¿line
-	std::getline(file, line);//°ÑµÚÒ»ĞĞÄÚÈİ¶ÁÈ¡µ½lineÖĞ
+	//ï¿½ï¿½È¡ï¿½ï¿½Ò»ï¿½Ğ²ï¿½ï¿½ï¿½ï¿½ï¿½
+	std::string line;//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½stringï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½line
+	std::getline(file, line);//ï¿½Ñµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½İ¶ï¿½È¡ï¿½ï¿½lineï¿½ï¿½
 
-	//Ñ­»·¶ÁÈ¡Ö±µ½Ä©Î²
+	//Ñ­ï¿½ï¿½ï¿½ï¿½È¡Ö±ï¿½ï¿½Ä©Î²
 	while (std::getline(file, line)) {
 		DailyInfo item;
-		//µ±²»ÊÇÄ©Î²Ê±£¬lineÀïÓĞ¶«Î÷£¬°Ñline½»¸øss
-		//stringstreamÄÜÏñ²Ù×÷ÎÄ¼şÁ÷Ò»Ñù²Ù×÷×Ö·û´®£¬
-		// ·½±ãÎÒÃÇ°´·Ö¸ô·û£¨ÕâÀïÊÇ¶ººÅ£©·Ö¸î×Ö·û´®£¬
-		// Ïàµ±ÓÚ°ÑÒ»ĞĞÎÄ±¾±ä³ÉÒ»¸ö ¡°¿ÉÇĞ¸îµÄÊı¾İÔ´¡±
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä©Î²Ê±ï¿½ï¿½lineï¿½ï¿½ï¿½Ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lineï¿½ï¿½ï¿½ï¿½ss
+		//stringstreamï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¶ï¿½ï¿½Å£ï¿½ï¿½Ö¸ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½
+		// ï¿½àµ±ï¿½Ú°ï¿½Ò»ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½
 		std::stringstream ss(line);
 		std::string token;
-		// 4.3 ¿ªÊ¼¡°ÇĞ²Ë¡±£¡°´¶ººÅ·Ö¸î×Ö·û´®
-		// ¸ñÊ½ÊÇ£ºÈÕÆÚ,¿ªÅÌ¼Û,×î¸ß¼Û,×îµÍ¼Û,ÊÕÅÌ¼Û,³É½»Á¿
-		std::getline(ss, item.date, ',');    // µÚÒ»µ¶£ºÇĞÏÂÈÕÆÚ£¬·Åµ½¿¨Æ¬µÄdateÀ¸
-		std::getline(ss, token, ',');        // µÚ¶şµ¶£ºÇĞÏÂÒ»¸ö×Ö·û´®£¨¿ªÅÌ¼Û£©£¬ÏÈ·Åµ½ÁÙÊ± token Àï
-		item.open = std::stod(token);        //         °ÑÕâ¸ö×Ö·û´®×ª»»³É double Êı×Ö£¬ÔÙ·Åµ½¿¨Æ¬µÄopenÀ¸
+		// 4.3 ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ğ²Ë¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å·Ö¸ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
+		// ï¿½ï¿½Ê½ï¿½Ç£ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½Ì¼ï¿½,ï¿½ï¿½ß¼ï¿½,ï¿½ï¿½Í¼ï¿½,ï¿½ï¿½ï¿½Ì¼ï¿½,ï¿½É½ï¿½ï¿½ï¿½
+		std::getline(ss, item.date, ',');    // ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½Åµï¿½ï¿½ï¿½Æ¬ï¿½ï¿½dateï¿½ï¿½
+		std::getline(ss, token, ',');        // ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼Û£ï¿½ï¿½ï¿½ï¿½È·Åµï¿½ï¿½ï¿½Ê± token ï¿½ï¿½
+		item.open = std::stod(token);        //         ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ double ï¿½ï¿½ï¿½Ö£ï¿½ï¿½Ù·Åµï¿½ï¿½ï¿½Æ¬ï¿½ï¿½openï¿½ï¿½
 
-		std::getline(ss, token, ',');        // µÚÈıµ¶£ºÇĞÏÂ£¨×î¸ß¼Û£©
-		item.high = std::stod(token);        //         ×ª»»ºó·ÅÈë high
+		std::getline(ss, token, ',');        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½ß¼Û£ï¿½
+		item.high = std::stod(token);        //         ×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ high
 
-		std::getline(ss, token, ',');        // µÚËÄµ¶£ºÇĞÏÂ£¨×îµÍ¼Û£©
-		item.low = std::stod(token);         //         ×ª»»ºó·ÅÈë low
+		std::getline(ss, token, ',');        // ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½Í¼Û£ï¿½
+		item.low = std::stod(token);         //         ×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ low
 
-		std::getline(ss, token, ',');        // µÚÎåµ¶£ºÇĞÏÂ£¨ÊÕÅÌ¼Û£©
-		item.close = std::stod(token);       //         ×ª»»ºó·ÅÈë close
+		std::getline(ss, token, ',');        // ï¿½ï¿½ï¿½åµ¶ï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½ï¿½Ì¼Û£ï¿½
+		item.close = std::stod(token);       //         ×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ close
 
-		std::getline(ss, token, ',');        // µÚÁùµ¶£ºÇĞÏÂ£¨³É½»Á¿£©
-		item.volume = std::stoll(token);     //         ×ª»»³É long long Êı×Ö£¬·ÅÈë volume
+		std::getline(ss, token, ',');        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½ï¿½É½ï¿½ï¿½ï¿½ï¿½ï¿½
+		item.volume = std::stoll(token);     //         ×ªï¿½ï¿½ï¿½ï¿½ long long ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½ volume
 
-		// 4.4 ÕâÕÅ¿¨Æ¬ÌîºÃÁË£¬°ÑËü·Å½ø´ü×ÓÀï£¡
+		// 4.4 ï¿½ï¿½ï¿½Å¿ï¿½Æ¬ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï£¡
 		dataset.push_back(item);
 	}
 
-	// 5. µãÃû½áÊø£¬¹Ø±Õ»¨Ãû²á£¬·µ»Ø×°Âú¿¨Æ¬µÄ´ü×Ó
+	// 5. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø±Õ»ï¿½ï¿½ï¿½ï¿½á£¬ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½Æ¬ï¿½Ä´ï¿½ï¿½ï¿½
 	file.close();
 	return dataset;
 }
 
 
-//´ÓcsvÖĞ»ñÈ¡ÃÀ¹ú¹úÕ®
+//ï¿½ï¿½csvï¿½Ğ»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ®
 std::vector<US_Treasury_Yields>load_yields_from_csv(const std::string& filename) {
 	std::vector<US_Treasury_Yields> dataset;
 
 	std::ifstream file(filename);
 	if (!file.is_open()) {
-		std::cout << "´íÎó£ºÎŞ·¨´ò¿ª¹úÕ®ÊÕÒæÂÊcsvÎÄ¼ş£¡Â·¾¶¿ÉÄÜ²»ÕıÈ·£º" << filename << std::endl;
-		return dataset; // ·µ»Ø¿Õvector
+		std::cout << "ï¿½ï¿½ï¿½ï¿½ï¿½Ş·ï¿½ï¿½ò¿ª¹ï¿½Õ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½csvï¿½Ä¼ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½Ü²ï¿½ï¿½ï¿½È·ï¿½ï¿½" << filename << std::endl;
+		return dataset; // ï¿½ï¿½ï¿½Ø¿ï¿½vector
 	}
 
-	//¶ÁÈ¡µÚÒ»ĞĞ²¢¶ªÆú
-	std::string line;//´´½¨Ò»¸östringÀàĞÍµÄÁÙÊ±±äÁ¿line
-	std::getline(file, line);//°ÑµÚÒ»ĞĞÄÚÈİ¶ÁÈ¡µ½lineÖĞ
+	//ï¿½ï¿½È¡ï¿½ï¿½Ò»ï¿½Ğ²ï¿½ï¿½ï¿½ï¿½ï¿½
+	std::string line;//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½stringï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½line
+	std::getline(file, line);//ï¿½Ñµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½İ¶ï¿½È¡ï¿½ï¿½lineï¿½ï¿½
 
 	while (std::getline(file, line)) {
 		US_Treasury_Yields item;
@@ -89,9 +89,9 @@ std::vector<US_Treasury_Yields>load_yields_from_csv(const std::string& filename)
 		std::stringstream ss(line);
 		std::string token;
 
-		std::getline(ss, item.date, ','); //ÈÕÆÚ
+		std::getline(ss, item.date, ','); //ï¿½ï¿½ï¿½ï¿½
 
-		std::getline(ss, token, ',');        // µÚ¶şµ¶£ºÇĞÏÂÒ»¸ö×Ö·û´®£¬ÏÈ·Åµ½ÁÙÊ± token Àï
+		std::getline(ss, token, ',');        // ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·Åµï¿½ï¿½ï¿½Ê± token ï¿½ï¿½
 		item.m1 = sup_stod(token);
 
 		std::getline(ss, token, ',');
@@ -132,9 +132,9 @@ std::vector<US_Treasury_Yields>load_yields_from_csv(const std::string& filename)
 	return dataset;
 }
 
-//¼ÆËãËùÓĞµÄÊÕÅÌ¼Û
-//²ÎÊı£ºÊı¾İ¼¯
-//Êä³ö£ºdoubleµÄvector
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½ï¿½ï¿½ï¿½Ì¼ï¿½
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ¼ï¿½
+//ï¿½ï¿½ï¿½ï¿½ï¿½doubleï¿½ï¿½vector
 std::vector<double>get_sum_close(const std::vector<DailyInfo>& data) {
 	std::vector<double> sum;
 	for (const auto& d : data) {
@@ -143,9 +143,9 @@ std::vector<double>get_sum_close(const std::vector<DailyInfo>& data) {
 	return sum;
 }
 
-//Ñ¡ÔñÎŞ·çÏÕÀûÂÊ£¨ÏÄÆÕ±ÈÂÊ£©£¬Ñ¡ÔñÊı¾İµÚÒ»ÌìµÄ10ÄêÆÚÃÀ¹ú¹úÕ®ÀûÂÊ
-//²ÎÊı£ºµÚÒ»ÌìµÄÈÕÆÚ×Ö·û´®£¬¹úÕ®ÀûÂÊvector
-//·µ»Ø£ºdoubleÀàµÄÀûÂÊ£¬Èç¹û·µ»Ø-1ÔòÎªÃ»ÕÒµ½¶ÔÓ¦ÈÕÆÚµÄÀûÂÊ
+//Ñ¡ï¿½ï¿½ï¿½Ş·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½ï¿½ï¿½ï¿½Õ±ï¿½ï¿½Ê£ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½İµï¿½Ò»ï¿½ï¿½ï¿½10ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ®ï¿½ï¿½ï¿½ï¿½
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ®ï¿½ï¿½ï¿½ï¿½vector
+//ï¿½ï¿½ï¿½Ø£ï¿½doubleï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-1ï¿½ï¿½ÎªÃ»ï¿½Òµï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½
 double choose_norisk_rate(std::string finddate, std::vector<US_Treasury_Yields>& yields) {
 	for (const auto& i : yields) {
 		if (i.date == finddate) {
@@ -154,9 +154,9 @@ double choose_norisk_rate(std::string finddate, std::vector<US_Treasury_Yields>&
 	}
 }
 
-//Êä³öÕË»§Îªcsv
-//ÊäÈë£ºÕË»§vector£¬½»Ò×ĞĞÎªvector£¬Á½¸öMAµÄ²ÎÊı
-//Êä³ö£ºÎŞ£¬µ«ÊÇ»á´´½¨Ò»¸öcsv
+//ï¿½ï¿½ï¿½ï¿½Ë»ï¿½Îªcsv
+//ï¿½ï¿½ï¿½ë£ºï¿½Ë»ï¿½vectorï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªvectorï¿½ï¿½ï¿½ï¿½ï¿½ï¿½MAï¿½Ä²ï¿½ï¿½ï¿½
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ş£ï¿½ï¿½ï¿½ï¿½Ç»á´´ï¿½ï¿½Ò»ï¿½ï¿½csv
 void output_account_csv(std::vector<Account>& sum,std::vector<TradeAct>& act,
     int short_days,int long_days) {
     std::string filename = "Data/Analysis/backtest_result_" + std::to_string(short_days) + "and" + std::to_string(long_days)+".csv";

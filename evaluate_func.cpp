@@ -1,18 +1,18 @@
-#include <iostream> // ÊäÈëÊä³ö¹¤¾ß£¬±ÈÈç cout (ÓÃÀ´´òÓ¡ĞÅÏ¢)
-#include <fstream>  // ÎÄ¼ş²Ù×÷¹¤¾ß£¬±ÈÈç ifstream (ÓÃÀ´¶ÁÈ¡ÎÄ¼ş)
-#include <sstream>  // ×Ö·û´®´¦Àí¹¤¾ß£¬±ÈÈç stringstream (ÓÃÀ´ÇĞ·Ö×Ö·û´®)
-#include <vector>   // ÈİÆ÷¹¤¾ß£¬±ÈÈç vector (ÓÃÀ´´æºÜ¶àÌõÊı¾İ)
-#include <string>   // ×Ö·û´®¹¤¾ß
-#include<iomanip > //Çó°Ù·Ö±È
-#include<cmath> //¼ÆËã½ğÈÚÖ¸±ê
+#include <iostream> // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ cout (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¡ï¿½ï¿½Ï¢)
+#include <fstream>  // ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ ifstream (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½Ä¼ï¿½)
+#include <sstream>  // ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ stringstream (ï¿½ï¿½ï¿½ï¿½ï¿½Ğ·ï¿½ï¿½Ö·ï¿½ï¿½ï¿½)
+#include <vector>   // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ vector (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+#include <string>   // ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#include <iomanip> //ï¿½ï¿½Ù·Ö±ï¿½
+#include <cmath> //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½
 #include"func_declare.hpp"
 
-//ÆÀ¹À¼¨Ğ§
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ§
 
-//×ÜÆÀ¹Àº¯ÊıÈë¿Ú
-//°üº¬ÄÚÈİ£º×ÜÊÕÒæÂÊ£¬Äê»¯ÊÕÒæÂÊ£¬×î´ó»Ø³·£¬ÈÕÊÕÒæÂÊ£¬
-// ÈÕÊÕÒæÂÊ±ê×¼²î£¬Äê»¯²¨¶¯ÂÊ£¬ÏÄÆÕ±ÈÂÊ
-//²ÎÊı£ºÕË»§vector£¬doubleÀàµÄ³õÊ¼×Ê½ğ£¬intÀàµÄÄê½»Ò×ÈÕÊıÁ¿£¬ÎŞ·çÏÕÀûÂÊ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½ï¿½ê»¯ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½ï¿½ï¿½ï¿½Ø³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½×¼ï¿½î£¬ï¿½ê»¯ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½ï¿½ï¿½ï¿½Õ±ï¿½ï¿½ï¿½
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë»ï¿½vectorï¿½ï¿½doubleï¿½ï¿½Ä³ï¿½Ê¼ï¿½Ê½ï¿½intï¿½ï¿½ï¿½ï¿½ê½»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ş·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void evaluate_func(const std::vector<Account>& sum, double base, 
 	  int days,double norisk) {
 	double ret = total_return(sum, base);
@@ -33,14 +33,14 @@ void evaluate_func(const std::vector<Account>& sum, double base,
 	double sharpe = sharpe_rate(rate, norisk, an_vo);
 	std::cout << "sharpe rate: " << sharpe << "\n";
 }
-//×ÜÊÕÒæÂÊ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 double total_return(const std::vector<Account>& sum, double base) {
 	double ratio = (sum[sum.size() - 1].total_value - base) / base;
 	//std::cout << std::fixed << std::setprecision(5) << ratio << "%" << std::endl;
 	return ratio;
 }
 
-//Äê»¯ÊÕÒæÂÊ
+//ï¿½ê»¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 double annualized_rate_of_return(const std::vector<Account>& sum, double base) {
 	double times = sum[sum.size() - 1].total_value / base;
 	int start_year = std::stoi(sum[0].date.substr(sum[0].date.rfind("/") + 1, 4));
@@ -51,21 +51,21 @@ double annualized_rate_of_return(const std::vector<Account>& sum, double base) {
 }
 
 
-//×î´ó»Ø³·
-//ÊäÈë£ºÕË»§vector£¬Ã¿ÈÕÊı¾İ
-//·µ»Ø£ºdouble¸ñÊ½µÄ×î´ó»Ø³·Öµ
-//ÀÛ¼Æ¾»Öµ²ÉÈ¡ÕË»§×Ü×Ê²ú
+//ï¿½ï¿½ï¿½Ø³ï¿½
+//ï¿½ï¿½ï¿½ë£ºï¿½Ë»ï¿½vectorï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//ï¿½ï¿½ï¿½Ø£ï¿½doubleï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½Ø³ï¿½Öµ
+//ï¿½Û¼Æ¾ï¿½Öµï¿½ï¿½È¡ï¿½Ë»ï¿½ï¿½ï¿½ï¿½Ê²ï¿½
 double max_drawdown(const std::vector<Account>& sum) {
 	double peak = -1.0;
 	double min_drawdown = 0.0;
 	double current_drawdown = -1.0;
 	for (auto i = sum.begin(); i != sum.end(); i++) {
-		//ÅĞ¶ÏÊÇ·ñ¸üĞÂ·åÖµ
+		//ï¿½Ğ¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Â·ï¿½Öµ
 		if (i->total_value > peak) {
-			//¸üĞÂ·åÖµ
+			//ï¿½ï¿½ï¿½Â·ï¿½Öµ
 			peak = i->total_value;
 		}
-		//ÅĞ¶ÏÊÇ·ñ¸üĞÂ×î´ó»Ø³·
+		//ï¿½Ğ¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø³ï¿½
 		current_drawdown = (i->total_value - peak) / peak;
 		if (current_drawdown < min_drawdown) {
 			min_drawdown = current_drawdown;
@@ -78,12 +78,12 @@ double max_drawdown(const std::vector<Account>& sum) {
 
 
 
-//ÈÕÊÕÒæÂÊ	
-//²ÎÊı£ºÕË»§ vector
-//Êä³ö£ºÈÕÊÕÒæÂÊvector
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë»ï¿½ vector
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½vector
 std::vector<double> daily_rate_of_return(const std::vector<Account>& sum) {
 	std::vector<double> rate;
-	//¼ÆËãºóĞøµÄÊÕÒæÂÊ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	for (int i = 1; i < sum.size(); i++)
 	{
 		rate.push_back((sum[i].total_value - sum[i - 1].total_value) / sum[i - 1].total_value);
@@ -91,10 +91,10 @@ std::vector<double> daily_rate_of_return(const std::vector<Account>& sum) {
 	return rate;
 }
 
-//ÊÕÒæÂÊµÄ±ê×¼²î
-//²ÎÊı£ºÈÕÊÕÒæÂÊvector
-//Êä³ö£ºÊÕÒæÂÊ±ê×¼²îvector
-//±ê×¼²î¦Ò = ¡Ì[¦²(r? - ¦Ì)? / (n-1)]
+//ï¿½ï¿½ï¿½ï¿½ï¿½ÊµÄ±ï¿½×¼ï¿½ï¿½
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½vector
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½×¼ï¿½ï¿½vector
+//ï¿½ï¿½×¼ï¿½ï¿½ï¿½ = ï¿½ï¿½[ï¿½ï¿½(r? - ï¿½ï¿½)? / (n-1)]
 double standard_deviation(const std::vector<double>& daily) {
 	int num = daily.size();
 	double ave = 0.0;
@@ -111,15 +111,15 @@ double standard_deviation(const std::vector<double>& daily) {
 }
 
 
-//Äê»¯²¨¶¯ÂÊ
-// ²ÎÊı£ºdouble±ê×¼²î£¬int½»Ò×ÈÕÆÚÊı
-// ·µ»Ø£ºdouble
+//ï¿½ê»¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½doubleï¿½ï¿½×¼ï¿½î£¬intï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// ï¿½ï¿½ï¿½Ø£ï¿½double
 double annualized_volatility(double& st, int& days) {
 	return st * std::sqrt(double(days));
 }
 
 
-//ÏÄÆÕ±ÈÂÊ
+//ï¿½ï¿½ï¿½Õ±ï¿½ï¿½ï¿½
 double sharpe_rate(double& annualized_rate_of_return,
 	double& norisk, double& annualized_volatility) {
 	return (annualized_rate_of_return - norisk) / annualized_volatility;

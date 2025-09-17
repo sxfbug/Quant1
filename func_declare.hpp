@@ -3,19 +3,19 @@
 #include<vector>
 #include <string>
 
-//Á£¶ÈÎªÈÕµÄÀúÊ·Êý¾Ý
+//ï¿½ï¿½ï¿½ï¿½Îªï¿½Õµï¿½ï¿½ï¿½Ê·ï¿½ï¿½ï¿½ï¿½
 struct DailyInfo
 {
-	std::string date;//ÈÕÆÚ
-	double open;//¿ªÅÌ¼Û
-	double high;//×î¸ß¼Û
-	double low;//×îµÍ¼Û
-	double close;//ÊÕÅÌ¼Û
-	double adj_close;//µ÷ÕûºóÊÕÅÌ¼Û
-	long long int volume;//³É½»Á¿
+	std::string date;//ï¿½ï¿½ï¿½ï¿½
+	double open;//ï¿½ï¿½ï¿½Ì¼ï¿½
+	double high;//ï¿½ï¿½ß¼ï¿½
+	double low;//ï¿½ï¿½Í¼ï¿½
+	double close;//ï¿½ï¿½ï¿½Ì¼ï¿½
+	double adj_close;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½
+	long long int volume;//ï¿½É½ï¿½ï¿½ï¿½
 };
 
-//ÃÀ¹ú¹úÕ®ÊÕÒæÂÊ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 struct US_Treasury_Yields
 {
 	std::string date;
@@ -32,28 +32,28 @@ struct US_Treasury_Yields
 	double y30;
 };
 
-//½»Ò×ÐÐÎªºÏ¼¯
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ï¼ï¿½
 struct TradeAct
 {
 	int idx;
-	std::string date;//ÈÕÆÚ
-	enum action //½»Ò×ÐÐÎª
+	std::string date;//ï¿½ï¿½ï¿½ï¿½
+	enum action //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª
 	{
 		BUY,
 		SELL,
 		HOLD,
 	}action;
-	double close; //µ±ÈÕÊÕÅÌ¼Û
+	double close; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½
 
 };
 
-//ÕË»§½á¹¹Ìå
+//ï¿½Ë»ï¿½ï¿½á¹¹ï¿½ï¿½
 struct Account
 {
-	std::string date;//ÈÕÆÚ
-	double cash;//ÏÖ½ðÊý
-	double shares=0.0;//³ÖÓÐ¹ÉÊý
-	double total_value;//×Ü×Ê²ú=cash+shares*close(daily)
+	std::string date;//ï¿½ï¿½ï¿½ï¿½
+	double cash;//ï¿½Ö½ï¿½ï¿½ï¿½
+	double shares=0.0;//ï¿½ï¿½ï¿½Ð¹ï¿½ï¿½ï¿½
+	double total_value;//ï¿½ï¿½ï¿½Ê²ï¿½=cash+shares*close(daily)
 
 
 };
@@ -61,7 +61,7 @@ struct Account
 
 //support function
 
-//ÌáÈ¡csvµ½vector
+//ï¿½ï¿½È¡csvï¿½ï¿½vector
 std::vector<DailyInfo>load_data_from_csv(const std::string& filename);
 std::vector<US_Treasury_Yields>load_yields_from_csv(const std::string& filename);
 double sup_stod(std::string x);
@@ -100,4 +100,5 @@ double sharpe_rate(double& annualized_rate_of_return,
 int Dual_MA_Strategy_full(const std::vector<DailyInfo>& data, int short_days,
 	int long_days, double base, double handling_Fees, int days, double norisk
 );
+
 #endif // !FUNCTION

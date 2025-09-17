@@ -1,32 +1,32 @@
-#include <iostream> // ÊäÈëÊä³ö¹¤¾ß£¬±ÈÈç cout (ÓÃÀ´´òÓ¡ÐÅÏ¢)
-#include <fstream>  // ÎÄ¼þ²Ù×÷¹¤¾ß£¬±ÈÈç ifstream (ÓÃÀ´¶ÁÈ¡ÎÄ¼þ)
-#include <sstream>  // ×Ö·û´®´¦Àí¹¤¾ß£¬±ÈÈç stringstream (ÓÃÀ´ÇÐ·Ö×Ö·û´®)
-#include <vector>   // ÈÝÆ÷¹¤¾ß£¬±ÈÈç vector (ÓÃÀ´´æºÜ¶àÌõÊý¾Ý)
-#include <string>   // ×Ö·û´®¹¤¾ß
-#include<iomanip > //Çó°Ù·Ö±È
-#include<cmath> //¼ÆËã½ðÈÚÖ¸±ê
-#include"func_declare.hpp"
+#include <iostream> // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ cout (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¡ï¿½ï¿½Ï¢)
+#include <fstream>  // ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ ifstream (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½Ä¼ï¿½)
+#include <sstream>  // ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ stringstream (ï¿½ï¿½ï¿½ï¿½ï¿½Ð·ï¿½ï¿½Ö·ï¿½ï¿½ï¿½)
+#include <vector>   // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ vector (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+#include <string>   // ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#include <iomanip> //ï¿½ï¿½Ù·Ö±ï¿½
+#include <cmath> //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½
+#include "func_declare.hpp"
 
-//²ßÂÔ£ºË«¾ùÏß²ßÂÔ£¬½ð²æÂòÈë£¬ËÀ²æÂô³ö
-//²ÎÊý£ºintÀàµÄ¶ÌÆÚMAÌìÊý£¬intÀàµÄ³¤ÆÚMAÌìÊý£¬dailyinfoÀàµÄÊý¾Ý¼¯data
-//·µ»Ø£º½»Ò×ÐÐÎªvector
+//ï¿½ï¿½ï¿½Ô£ï¿½Ë«ï¿½ï¿½ï¿½ß²ï¿½ï¿½Ô£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½intï¿½ï¿½Ä¶ï¿½ï¿½ï¿½MAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½intï¿½ï¿½Ä³ï¿½ï¿½ï¿½MAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½dailyinfoï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¼ï¿½data
+//ï¿½ï¿½ï¿½Ø£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªvector
 std::vector<TradeAct> Dual_MA_Strategy(	int& short_days,int& long_days,
 	const std::vector<DailyInfo>& data) {
-	//¼ÆËã¶ÌÆÚºÍ³¤ÆÚMA
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÚºÍ³ï¿½ï¿½ï¿½MA
 	std::vector<double>shortMA;
 	std::vector<double>longMA;
 
 	shortMA = get_MA(data, short_days);
 	longMA = get_MA(data, long_days);
 
-	//½»Ò×ÐÐÎªvector
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªvector
 	std::vector<TradeAct> act;
 
-	//×´Ì¬±äÁ¿£¬ÅÐ¶Ïµ±Ç°³Ö²Ö×´Ì¬¡£²»ÐèÒªhold£¬ÒòÎªhold is not actionable
+	//×´Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ïµï¿½Ç°ï¿½Ö²ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªholdï¿½ï¿½ï¿½ï¿½Îªhold is not actionable
 	bool isHolding = false;
 	int idx = 0;
 
-	//Ã»ÓÐ³¤ÆÚ¾ùÏß£¬²»Âú×ã±È½ÏÌõ¼þ
+	//Ã»ï¿½Ð³ï¿½ï¿½Ú¾ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È½ï¿½ï¿½ï¿½ï¿½ï¿½
 	while (longMA[idx] == 0)
 	{
 		TradeAct item;
@@ -43,7 +43,7 @@ std::vector<TradeAct> Dual_MA_Strategy(	int& short_days,int& long_days,
 	for (int i = idx; i < longMA.size(); i++) {
 
 		TradeAct item;
-		//¶ÌÆÚ¾ùÏßÏòÉÏÍ»ÆÆ³¤ÆÚ¾ùÏß£¬ÐÎ³É½ð²æ£¬ÇÒÎ´³ÖÓÐÊ±ÂòÈë
+		//ï¿½ï¿½ï¿½Ú¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½Æ³ï¿½ï¿½Ú¾ï¿½ï¿½ß£ï¿½ï¿½Î³É½ï¿½æ£¬ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
 		if (shortMA[i] > longMA[i] && shortMA[i - 1] <= longMA[i - 1] && !isHolding) {
 
 			item.date = data[i].date;
@@ -52,7 +52,7 @@ std::vector<TradeAct> Dual_MA_Strategy(	int& short_days,int& long_days,
 			act.push_back(item);
 			isHolding = true;
 		}
-		//¶ÌÆÚ¾ùÏßÏòÏÂÍ»ÆÆ³¤ÆÚ¾ùÏß£¬ÐÎ³ÉËÀ²æ£¬ÇÒ³ÖÓÐÊ±Âô³ö
+		//ï¿½ï¿½ï¿½Ú¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½Æ³ï¿½ï¿½Ú¾ï¿½ï¿½ß£ï¿½ï¿½Î³ï¿½ï¿½ï¿½ï¿½æ£¬ï¿½Ò³ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
 		else if (shortMA[i] < longMA[i] && shortMA[i - 1] >= longMA[i - 1] && isHolding) {
 			item.date = data[i].date;
 			item.close = data[i].close;

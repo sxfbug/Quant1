@@ -1,15 +1,15 @@
-#include <iostream> // ÊäÈëÊä³ö¹¤¾ß£¬±ÈÈç cout (ÓÃÀ´´òÓ¡ÐÅÏ¢)
-#include <fstream>  // ÎÄ¼þ²Ù×÷¹¤¾ß£¬±ÈÈç ifstream (ÓÃÀ´¶ÁÈ¡ÎÄ¼þ)
-#include <sstream>  // ×Ö·û´®´¦Àí¹¤¾ß£¬±ÈÈç stringstream (ÓÃÀ´ÇÐ·Ö×Ö·û´®)
-#include <vector>   // ÈÝÆ÷¹¤¾ß£¬±ÈÈç vector (ÓÃÀ´´æºÜ¶àÌõÊý¾Ý)
-#include <string>   // ×Ö·û´®¹¤¾ß
-#include<iomanip > //Çó°Ù·Ö±È
-#include<cmath> //¼ÆËã½ðÈÚÖ¸±ê
+#include <iostream> // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ cout (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¡ï¿½ï¿½Ï¢)
+#include <fstream>  // ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ ifstream (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½Ä¼ï¿½)
+#include <sstream>  // ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ stringstream (ï¿½ï¿½ï¿½ï¿½ï¿½Ð·ï¿½ï¿½Ö·ï¿½ï¿½ï¿½)
+#include <vector>   // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ vector (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+#include <string>   // ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#include <iomanip> //ï¿½ï¿½Ù·Ö±ï¿½
+#include <cmath> //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½
 #include"func_declare.hpp"
 
-//¼ÆËã¶ÔÓ¦µÄMA
-//²ÎÊý£ºÊÕÅÌ¼Ûvector£¬MAµÄy£¨¹ýÈ¥yÈÕ£©
-//Êä³ö£ºdoubleµÄvector
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½MA
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½vectorï¿½ï¿½MAï¿½ï¿½yï¿½ï¿½ï¿½ï¿½È¥yï¿½Õ£ï¿½
+//ï¿½ï¿½ï¿½ï¿½ï¿½doubleï¿½ï¿½vector
 std::vector<double>get_MA(const std::vector<DailyInfo>& close, int y) {
 	std::vector<double> MA;
 	double sum = 0.0;
@@ -18,7 +18,7 @@ std::vector<double>get_MA(const std::vector<DailyInfo>& close, int y) {
 		return MA;
 	}*/
 
-	//»¬¶¯´°¿Ú£ºÏÈ¼ÆËãÇ°Ãæy¸öÔªËØ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½È¼ï¿½ï¿½ï¿½Ç°ï¿½ï¿½yï¿½ï¿½Ôªï¿½ï¿½
 	int temp;
 	for (int i = 0; i < y && i < close.size(); i++) {
 		sum += close[i].close;
@@ -26,10 +26,10 @@ std::vector<double>get_MA(const std::vector<DailyInfo>& close, int y) {
 		temp = i;
 	}
 
-	//µÚy+1¸öÔªËØµÄMAÖµ
+	//ï¿½ï¿½y+1ï¿½ï¿½Ôªï¿½Øµï¿½MAÖµ
 	MA.push_back(sum / y);
 
-	//´ÓµÚy+2¸öÔªËØ¿ªÊ¼
+	//ï¿½Óµï¿½y+2ï¿½ï¿½Ôªï¿½Ø¿ï¿½Ê¼
 	for (int i = y + 1; i < close.size(); i++) {
 		sum = sum - close[i - y].close + close[i].close;
 		MA.push_back(sum / y);
