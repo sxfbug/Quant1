@@ -13,6 +13,10 @@ main 函数入口
   
 更新日志：  
 
+17/9/2025  
+make this code enable to run in Linux-vscode
+Future development will based on Linux and vscode  
+
 10/9/2025  
 补了之前的更新  
 添加full_strategy.cpp，包含高度封装的完整策略  
